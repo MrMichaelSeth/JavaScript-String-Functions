@@ -30,8 +30,11 @@ function camelCase (userInput) {
 }
 
 function capitalizeWords(str) {
+    // Set-Up
     let shouldCapitalize = true;
     let result = "";
+
+    //main For Loop
     for (let i = 0; i < str.length; i++)  {
         // Check for the first letter in a word, if it is, then Capitalize
         if (str.charAt(i) === " ") {
@@ -39,7 +42,7 @@ function capitalizeWords(str) {
             shouldCapitalize = true;
         }
         else if (shouldCapitalize == true)  {
-            result += str.charAt(i).toUpperCase();
+            result = result + str.charAt(i).toUpperCase();
             shouldCapitalize = false;
         } 
          else if (shouldCapitalize == false) {
@@ -47,10 +50,11 @@ function capitalizeWords(str) {
             shouldCapitalize = false;
         } 
     }
+    //My result at the end
     return result;
 }
 
-console.log(camelCase( "how are you doing today?")); 
+console.log(capitalizeWords( "Hello how are you?")); 
 
 
 //Reverse string function
@@ -74,6 +78,46 @@ function reverseString(str) {
             // reversedString.unshift(holder);
          }    
     }
-    return reversedString;
+    let convertedString = reversedString.toString();
+    convertedString = convertedString.replaceAll( ",", " ");
+    return convertedString;
+ 
 }
-console.log (reverseString ("good morning sir")); 
+
+console.log (reverseString("good morning sir")); 
+
+//reverseThenCamelCase && remove spaces
+
+function reverseThenCamelCase (str) {
+    let finalString = reverseString(capitalizeWords(str));
+    finalString = finalString.replaceAll(" ", "");
+    return finalString;
+}
+
+console.log(reverseThenCamelCase("i enjoy long walks on the beach"));
+
+//Removing the first and last Character 
+/* */
+
+function removeFirstAndLast (str) {
+    let value = str.slice(1, str.length - 1);
+    return value;
+}
+
+console.log(removeFirstAndLast("germany"));
+
+//invertCasing 
+
+function invertCasing (input) {
+    let string = ""
+    for ( let i = 0; i < input.length; i++) {
+        if (input.charAt(i) == input.charAt(i).toUpperCase()) {
+           string += input.charAt(i).toLowerCase()
+        } else if (input.charAt(i) == input.charAt(i).toLowerCase()){
+            string += input.charAt(i).toUpperCase()
+        } 
+    }   
+    return string;
+}
+
+console.log(invertCasing("SpoGeBob MemE"));
